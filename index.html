@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kerollos &amp; Mariam | Wedding Celebration</title>
+  <meta name="description" content="Celebrate the holy matrimony of Kerollos &amp; Mariam on October 28, 2026. View ceremony details, countdown to our special day, and share your warm wishes.">
+  
+  <!-- Favicon Monogram -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
+
+  <!-- Google Fonts: Cormorant Garamond, Lato & Tangerine -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Lato:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Tangerine:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="no-scroll">
+
+  <!-- Fullscreen Intro Video Overlay -->
+  <div id="intro-overlay" class="intro-overlay" role="dialog" aria-modal="true" aria-label="Welcome video overlay">
+    <div class="intro-video-container">
+      <video id="intro-video" class="intro-video" autoplay loop muted playsinline preload="auto">
+        <source src="assets/imgs/overlay.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="intro-scrim"></div>
+    </div>
+
+    <div class="intro-content">
+      <div class="intro-card">
+        <h1 class="intro-title">Kerollos &amp; Mariam</h1>
+        <button id="join-us-btn" class="victorian-btn victorian-btn-primary victorian-btn-lg" type="button" autofocus>
+          <span class="btn-text">Join Us</span>
+          <span class="btn-flourish" aria-hidden="true">&#10086;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Primary Site Navigation -->
+  <header class="site-header" id="site-header">
+    <div class="nav-container">
+      
+      <!-- Left side: Sound toggle (mobile & desktop) & Left links (desktop) -->
+      <div class="nav-left">
+        <button id="music-toggle-btn" class="music-toggle-btn is-paused" type="button" aria-pressed="false" aria-label="Play background music">
+          <div class="music-wave" aria-hidden="true">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+          </div>
+          <svg class="music-icon icon-note" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+            <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+          </svg>
+          <span class="music-label">Music</span>
+        </button>
+
+        <nav class="desktop-nav-group desktop-nav-left" aria-label="Left Navigation">
+          <ul class="nav-list">
+            <li><a href="#hero" class="nav-link">Home</a></li>
+            <li><a href="#countdown" class="nav-link">Countdown</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Center: Fancy Script Names in Tangerine -->
+      <a href="#hero" class="nav-brand-center" aria-label="Kerollos &amp; Mariam">
+        <span class="brand-names-fancy">Kerollos &amp; Mariam</span>
+      </a>
+
+      <!-- Right side: Right links (desktop) & Mobile hamburger -->
+      <div class="nav-right">
+        <nav class="desktop-nav-group desktop-nav-right" aria-label="Right Navigation">
+          <ul class="nav-list">
+            <li><a href="#send-wish" class="nav-link">Send a Wish</a></li>
+            <li><a href="#guest-wishes" class="nav-link">Guest Wishes</a></li>
+          </ul>
+        </nav>
+
+        <button id="nav-toggle" class="nav-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open navigation menu">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu (Outside header to prevent sticky stacking context bugs) -->
+  <div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+    <div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
+    <div class="mobile-menu-panel" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+      <div class="mobile-menu-header">
+        <span class="mobile-brand-fancy">Kerollos &amp; Mariam</span>
+        <button id="nav-close" class="nav-close" type="button" aria-label="Close navigation menu">
+          &times;
+        </button>
+      </div>
+
+      <div class="ornament-divider" aria-hidden="true">
+        <span class="line"></span>
+        <span class="diamond">&#9670;</span>
+        <span class="line"></span>
+      </div>
+
+      <ul class="mobile-nav-list">
+        <li><a href="#hero" class="mobile-nav-link">Home</a></li>
+        <li><a href="#countdown" class="mobile-nav-link">Countdown</a></li>
+        <li><a href="#send-wish" class="mobile-nav-link">Send a Wish</a></li>
+        <li><a href="#guest-wishes" class="mobile-nav-link">Guest Wishes</a></li>
+      </ul>
+
+      <div class="mobile-menu-footer">
+        <p class="mobile-date">October 28, 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Website Content Container -->
+  <main id="main-content" class="main-content" tabindex="-1">
+    
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="container hero-container">
+        
+        <div class="hero-header-ornament reveal-on-scroll reveal-up" aria-hidden="true">
+          <svg class="victorian-flourish-svg" viewBox="0 0 300 30" fill="currentColor">
+            <path d="M150,15 C170,5 210,5 230,20 C210,12 180,18 160,25 C155,27 152,28 150,29 C148,28 145,27 140,25 C120,18 90,12 70,20 C90,5 130,5 150,15 Z"/>
+            <circle cx="150" cy="8" r="3"/>
+            <circle cx="50" cy="18" r="2"/>
+            <circle cx="250" cy="18" r="2"/>
+          </svg>
+        </div>
+
+        <!-- Couple Portrait in Clean Victorian Rounded Frame -->
+        <div class="hero-portrait-wrapper reveal-on-scroll reveal-right">
+          <div class="victorian-frame">
+            <img 
+              src="assets/imgs/KM.jpeg" 
+              alt="Portrait of Kerollos and Mariam" 
+              class="hero-portrait-img"
+              width="600"
+              height="750"
+              loading="eager"
+            >
+          </div>
+        </div>
+
+        <div class="hero-content reveal-on-scroll reveal-left">
+          <p class="hero-subtitle">Together With Their Families</p>
+          <h1 class="hero-title">Kerollos &amp; Mariam</h1>
+          <p class="hero-tagline">Cordially request the honor of your presence and blessings as they unite in Holy Matrimony</p>
+          
+          <div class="hero-date-badge">
+            <span class="badge-day">Wednesday</span>
+            <span class="badge-date">October 28, 2026</span>
+          </div>
+
+          <!-- Symmetrical Ornamental Divider -->
+          <div class="ornament-divider ornament-lg" aria-hidden="true">
+            <span class="line"></span>
+            <span class="flourish-icon">&#10087;</span>
+            <span class="diamond">&#9670;</span>
+            <span class="flourish-icon">&#10087;</span>
+            <span class="line"></span>
+          </div>
+
+          <!-- Event Schedule Details: Ceremony & Reception Cards -->
+          <div class="event-cards-grid">
+            <!-- Ceremony Card (slides from left) -->
+            <article class="victorian-card event-card reveal-on-scroll reveal-left">
+              <div class="event-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                  <path d="M12 2L9 7H4v13h16V7h-5L12 2zm0 3.3L13.5 7h-3L12 5.3zM6 9h12v9H6V9zm6 2c-1.66 0-3 1.34-3 3v4h6v-4c0-1.66-1.34-3-3-3z"/>
+                </svg>
+              </div>
+              <h2 class="event-title">Holy Matrimony Ceremony</h2>
+              <p class="event-venue">Saint Mary &amp; Saint George Coptic Orthodox Church</p>
+              <p class="event-address">Heliopolis, Cairo, Egypt</p>
+              <div class="event-time-pill">
+                <span class="time-label">Time:</span>
+                <span class="time-value">5:00 PM</span>
+              </div>
+              
+              <!-- Location Link Button -->
+              <a href="https://maps.google.com/?q=Saint+Mary+and+Saint+George+Coptic+Orthodox+Church+Heliopolis" target="_blank" rel="noopener noreferrer" class="event-location-link" id="church-location-link">
+                <svg class="location-pin-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span>View Church Location</span>
+              </a>
+            </article>
+
+            <!-- Reception Card (slides from right) -->
+            <article class="victorian-card event-card reveal-on-scroll reveal-right">
+              <div class="event-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+                  <path d="M5 2c0 .88.39 1.67 1 2.22V19c0 1.66 1.34 3 3 3h6c1.66 0 3-1.34 3-3V4.22c.61-.55 1-1.34 1-2.22H5zm10 17H9c-.55 0-1-.45-1-1v-4h8v4c0 .55-.45 1-1 1zm1-7H8V5h8v7z"/>
+                </svg>
+              </div>
+              <h2 class="event-title">Wedding Dinner &amp; Reception</h2>
+              <p class="event-venue">The Grand Victorian Ballroom</p>
+              <p class="event-address">Cairo, Egypt</p>
+              <div class="event-time-pill">
+                <span class="time-label">Time:</span>
+                <span class="time-value">7:30 PM</span>
+              </div>
+              
+              <!-- Location Link Button -->
+              <a href="https://maps.google.com/?q=The+Grand+Ballroom+Cairo" target="_blank" rel="noopener noreferrer" class="event-location-link" id="reception-location-link">
+                <svg class="location-pin-icon" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                <span>View Reception Location</span>
+              </a>
+            </article>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section" id="countdown">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll reveal-up">
+          <p class="section-eyebrow">Awaiting Our Special Day</p>
+          <h2 class="section-title">The Countdown to Forever</h2>
+          <div class="ornament-divider" aria-hidden="true">
+            <span class="line"></span>
+            <span class="diamond">&#9670;</span>
+            <span class="line"></span>
+          </div>
+          <p class="section-desc">Counting down every second until we say “I Do” on October 28, 2026</p>
+        </div>
+
+        <div class="countdown-grid" id="countdown-grid" aria-label="Time remaining until wedding">
+          <!-- Days -->
+          <div class="countdown-card reveal-on-scroll reveal-up delay-1">
+            <div class="countdown-inner">
+              <span class="countdown-num" id="cd-days">--</span>
+              <span class="countdown-label">Days</span>
+            </div>
+          </div>
+          <!-- Hours -->
+          <div class="countdown-card reveal-on-scroll reveal-up delay-2">
+            <div class="countdown-inner">
+              <span class="countdown-num" id="cd-hours">--</span>
+              <span class="countdown-label">Hours</span>
+            </div>
+          </div>
+          <!-- Minutes -->
+          <div class="countdown-card reveal-on-scroll reveal-up delay-3">
+            <div class="countdown-inner">
+              <span class="countdown-num" id="cd-minutes">--</span>
+              <span class="countdown-label">Minutes</span>
+            </div>
+          </div>
+          <!-- Seconds -->
+          <div class="countdown-card reveal-on-scroll reveal-up delay-4">
+            <div class="countdown-inner">
+              <span class="countdown-num" id="cd-seconds">--</span>
+              <span class="countdown-label">Seconds</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="countdown-expired" class="countdown-expired hidden" role="status">
+          <p class="expired-msg">The day is here! Thank you for celebrating with us.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Send Your Wishes Form Section -->
+    <section class="send-wish-section" id="send-wish">
+      <div class="container narrow-container">
+        <div class="section-header text-center reveal-on-scroll reveal-up">
+          <p class="section-eyebrow">Leave a Blessing</p>
+          <h2 class="section-title">Send Your Wishes</h2>
+          <div class="ornament-divider" aria-hidden="true">
+            <span class="line"></span>
+            <span class="diamond">&#9670;</span>
+            <span class="line"></span>
+          </div>
+          <p class="section-desc">Share your love and blessings with Kerollos &amp; Mariam.</p>
+        </div>
+
+        <!-- Form Card Container (slides from left) -->
+        <div class="victorian-card form-card-box reveal-on-scroll reveal-left">
+          
+          <!-- Live Status Feedback Message -->
+          <div id="form-feedback" class="form-feedback hidden" role="status" aria-live="polite"></div>
+
+          <form id="wish-form" class="wish-form" novalidate>
+            <!-- Name Input Field -->
+            <div class="form-group">
+              <div class="label-row">
+                <label for="wish-name" class="form-label">
+                  Your Full Name <span class="required" aria-hidden="true">*</span>
+                </label>
+                <span id="name-count" class="char-count" aria-live="off">0 / 80</span>
+              </div>
+              <input 
+                type="text" 
+                id="wish-name" 
+                name="name" 
+                class="victorian-input" 
+                placeholder="e.g. David &amp; Sarah" 
+                maxlength="80" 
+                required 
+                autocomplete="name"
+              >
+            </div>
+
+            <!-- Message Input Field -->
+            <div class="form-group">
+              <div class="label-row">
+                <label for="wish-message" class="form-label">
+                  Your Heartfelt Message <span class="required" aria-hidden="true">*</span>
+                </label>
+                <span id="message-count" class="char-count" aria-live="off">0 / 1000</span>
+              </div>
+              <textarea 
+                id="wish-message" 
+                name="message" 
+                class="victorian-textarea" 
+                rows="5" 
+                placeholder="Share your prayers, memories, or joyful congratulations for the newlyweds..." 
+                maxlength="1000" 
+                required
+              ></textarea>
+            </div>
+
+            <!-- Submit Button with Loading Spinner -->
+            <div class="form-submit-row">
+              <button type="submit" id="wish-submit-btn" class="victorian-btn victorian-btn-primary victorian-btn-block">
+                <span class="submit-text">Send Your Wish</span>
+                <span class="submit-spinner hidden" aria-hidden="true">
+                  <svg class="spinner-svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" fill="none" stroke-width="3"></circle>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Guest Wishes Section (Bounded Independently Scrollable Panel) -->
+    <section class="guest-wishes-section" id="guest-wishes">
+      <div class="container">
+        <div class="section-header text-center reveal-on-scroll reveal-up">
+          <p class="section-eyebrow">Warm Sentiments</p>
+          <h2 class="section-title">Guest Wishes</h2>
+          <div class="ornament-divider" aria-hidden="true">
+            <span class="line"></span>
+            <span class="diamond">&#9670;</span>
+            <span class="line"></span>
+          </div>
+          <p class="section-desc">Treasured blessings shared by our beloved family &amp; friends</p>
+        </div>
+
+        <!-- Bounded, Independently Scrollable Panel (slides from right) -->
+        <div class="wishes-panel-wrapper">
+          <div class="wishes-panel-border reveal-on-scroll reveal-right">
+            <div 
+              id="wishes-panel" 
+              class="wishes-panel" 
+              tabindex="0" 
+              role="region" 
+              aria-label="Guest wishes list. Scroll vertically to view more wishes."
+            >
+              <!-- Loading State -->
+              <div id="wishes-loading" class="wishes-state-box">
+                <div class="state-spinner" aria-hidden="true"></div>
+                <p class="state-text">Gathering heartfelt wishes...</p>
+              </div>
+
+              <!-- Empty State -->
+              <div id="wishes-empty" class="wishes-state-box hidden">
+                <div class="empty-icon" aria-hidden="true">&#9997;</div>
+                <h3 class="empty-title">Be the First to Leave a Wish</h3>
+                <p class="empty-desc">Share your love and blessings with Kerollos &amp; Mariam.</p>
+                <a href="#send-wish" class="victorian-btn victorian-btn-secondary btn-sm">Write a Wish</a>
+              </div>
+
+              <!-- Error State -->
+              <div id="wishes-error" class="wishes-state-box hidden" role="alert">
+                <div class="error-icon" aria-hidden="true">&#9888;</div>
+                <h3 class="error-title">Unable to Load Wishes</h3>
+                <p class="error-desc">There was a temporary problem reaching the wishes. Please refresh the page or try again shortly.</p>
+              </div>
+
+              <!-- Dynamic Wishes Cards Grid -->
+              <div id="wishes-grid" class="wishes-grid"></div>
+            </div>
+          </div>
+          
+          <div class="panel-hint" aria-hidden="true">
+            <span class="hint-arrow">&#8595;</span>
+            <span class="hint-text">Scroll inside panel to view all blessings</span>
+            <span class="hint-arrow">&#8595;</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Victorian Footer -->
+  <footer class="site-footer" id="footer">
+    <div class="container footer-container text-center reveal-on-scroll reveal-up">
+      
+      <div class="footer-flourish" aria-hidden="true">
+        <svg viewBox="0 0 200 24" class="footer-svg" fill="currentColor">
+          <path d="M100,12 C115,4 140,4 155,16 C140,9 120,14 108,19 C104,20 102,21 100,22 C98,21 96,20 92,19 C80,14 60,9 45,16 C60,4 85,4 100,12 Z" />
+          <circle cx="100" cy="7" r="2.5" />
+        </svg>
+      </div>
+
+      <p class="footer-tagline">Save the Date</p>
+      <h2 class="footer-title">Kerollos &amp; Mariam</h2>
+      <p class="footer-date">October 28, 2026</p>
+
+      <div class="ornament-divider ornament-sm" aria-hidden="true">
+        <span class="line"></span>
+        <span class="diamond">&#9670;</span>
+        <span class="line"></span>
+      </div>
+
+      <p class="footer-closing">With gratitude for your love, prayers, and presence in our journey.</p>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript Application Module -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

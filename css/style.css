@@ -1,0 +1,1573 @@
+/* ==========================================================================
+   Kerollos & Mariam — Victorian Wedding Website Stylesheet
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Design System & CSS Custom Properties
+   -------------------------------------------------------------------------- */
+:root {
+  /* Required Exact Color Palette Tokens */
+  --color-primary: #8C6A4E;
+  --color-secondary: #4A3628;
+  --color-accent: #D6C4A7;
+  --color-background: #F8F1E7;
+  --color-surface: #FFFAF3;
+
+  --color-primary-hover: #75563F;
+  --color-secondary-hover: #36271D;
+
+  --color-shadow: rgba(74, 54, 40, 0.12);
+
+  /* Supplemental Victorian Accents */
+  --color-gold: #C5A059;
+  --color-gold-light: #F2E3C6;
+  --color-text-muted: #7A695B;
+  --color-border-subtle: rgba(214, 196, 167, 0.45);
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Garamond, Georgia, 'Times New Roman', serif;
+  --font-sans: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-script: 'Tangerine', 'Great Vibes', cursive;
+
+  /* Layout & Sizing with elegant rounded borders */
+  --max-content-width: 1200px;
+  --max-narrow-width: 760px;
+  --header-height: 80px;
+  
+  /* Refined, smooth border-radii */
+  --radius-sm: 16px;
+  --radius-md: 22px;
+  --radius-lg: 28px;
+  --radius-pill: 50px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  --transition-long: 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Base Styles
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--color-secondary);
+  background-color: var(--color-background);
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
+img, video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button, input, textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.narrow-container {
+  max-width: var(--max-narrow-width);
+}
+
+.text-center {
+  text-align: center;
+}
+
+section[id] {
+  scroll-margin-top: calc(var(--header-height) + 1.5rem);
+}
+
+/* --------------------------------------------------------------------------
+   3. Victorian Ornamental Details & Flourishes
+   -------------------------------------------------------------------------- */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 1.25rem auto;
+  color: var(--color-accent);
+  width: 100%;
+  max-width: 380px;
+}
+
+.ornament-divider .line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent) 40%, var(--color-accent) 60%, transparent);
+}
+
+.ornament-divider .diamond {
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  transform: scale(0.9);
+}
+
+.ornament-divider .flourish-icon {
+  font-size: 0.95rem;
+  color: var(--color-primary);
+}
+
+.ornament-divider.ornament-lg {
+  max-width: 520px;
+}
+
+.ornament-divider.ornament-sm {
+  max-width: 240px;
+}
+
+/* Section Header Typography */
+.section-header {
+  margin-bottom: 2.75rem;
+}
+
+.section-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  color: var(--color-primary);
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 600;
+  color: var(--color-secondary);
+  line-height: 1.2;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 580px;
+  margin: 0.5rem auto 0;
+}
+
+/* Victorian Cards & Frames with elegant curves */
+.victorian-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: 2.25rem 2rem;
+  box-shadow: 0 10px 30px var(--color-shadow);
+  position: relative;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.victorian-card::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(214, 196, 167, 0.45);
+  pointer-events: none;
+  border-radius: calc(var(--radius-md) - 6px);
+}
+
+/* Victorian Buttons */
+.victorian-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px var(--color-shadow);
+}
+
+.victorian-btn:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+}
+
+.victorian-btn-primary {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #75563F 100%);
+  color: #FFFFFF;
+  border: 1px solid var(--color-accent);
+}
+
+.victorian-btn-primary:hover {
+  background: linear-gradient(135deg, var(--color-primary-hover) 0%, #5E432F 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(74, 54, 40, 0.3);
+  color: #FFFFFF;
+}
+
+.victorian-btn-primary:active {
+  transform: translateY(0);
+}
+
+.victorian-btn-secondary {
+  background-color: transparent;
+  color: var(--color-secondary);
+  border: 1px solid var(--color-primary);
+}
+
+.victorian-btn-secondary:hover {
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.victorian-btn-lg {
+  padding: 0.95rem 2.6rem;
+  font-size: 1.25rem;
+  letter-spacing: 0.12em;
+}
+
+.victorian-btn-block {
+  width: 100%;
+}
+
+.btn-flourish {
+  font-size: 0.85em;
+  opacity: 0.85;
+}
+
+/* --------------------------------------------------------------------------
+   4. Fullscreen Intro Video Overlay (Extra Transparent, Compact Box)
+   -------------------------------------------------------------------------- */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: #120904;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--transition-long), visibility var(--transition-long);
+}
+
+.intro-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro-video-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.intro-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.96);
+}
+
+/* Softer scrim to allow video to be clearly visible */
+.intro-scrim {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(20, 12, 8, 0.12) 0%, rgba(20, 12, 8, 0.42) 100%),
+              linear-gradient(to bottom, rgba(30, 18, 12, 0.15) 0%, rgba(16, 9, 5, 0.45) 100%);
+}
+
+.intro-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+  animation: introFadeUp 1s ease-out;
+}
+
+/* Extra transparent, compact warm brown glassmorphism card */
+.intro-card {
+  background-color: rgba(45, 30, 20, 0.28);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 1.85rem 2rem;
+  border: 1px solid rgba(214, 196, 167, 0.35);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  position: relative;
+}
+
+.intro-card::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(214, 196, 167, 0.25);
+  pointer-events: none;
+  border-radius: calc(var(--radius-lg) - 5px);
+}
+
+.intro-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 2.8rem);
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.15;
+  margin-bottom: 1.25rem;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+@keyframes introFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Site Header & Symmetrical Navigation Bar
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: var(--header-height);
+  background-color: rgba(248, 241, 231, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border-subtle);
+  box-shadow: 0 4px 20px var(--color-shadow);
+  transition: background-color var(--transition-fast);
+}
+
+.nav-container {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  height: 100%;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* Left Group */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: flex-start;
+}
+
+/* Center Brand with Tangerine Script Font */
+.nav-brand-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.brand-names-fancy {
+  font-family: var(--font-script);
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 700;
+  color: var(--color-secondary);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-shadow: 0 1px 2px rgba(74, 54, 40, 0.15);
+  white-space: nowrap;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.brand-names-fancy:hover {
+  color: var(--color-primary);
+  transform: scale(1.03);
+}
+
+/* Right Group */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  justify-content: flex-end;
+}
+
+/* Desktop Nav Groups */
+.desktop-nav-group .nav-list {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+}
+
+.nav-link {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-secondary);
+  position: relative;
+  padding: 0.4rem 0;
+  transition: color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--color-primary);
+  transition: all var(--transition-smooth);
+  transform: translateX(-50%);
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--color-primary);
+}
+
+.nav-link:hover::after,
+.nav-link:focus-visible::after {
+  width: 100%;
+}
+
+/* Music Toggle Button (Left on both mobile and desktop) */
+.music-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  color: var(--color-secondary);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  transition: all var(--transition-smooth);
+}
+
+.music-toggle-btn:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.music-toggle-btn.is-playing {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.music-toggle-btn.is-playing:hover {
+  color: #FFFFFF;
+}
+
+/* Sound wave animation */
+.music-wave {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+}
+
+.music-wave .bar {
+  width: 2.5px;
+  height: 4px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transition: height 0.2s ease;
+}
+
+.music-toggle-btn.is-playing .bar-1 {
+  animation: soundWave 0.8s ease-in-out infinite alternate;
+}
+.music-toggle-btn.is-playing .bar-2 {
+  animation: soundWave 0.6s ease-in-out infinite 0.2s alternate;
+}
+.music-toggle-btn.is-playing .bar-3 {
+  animation: soundWave 0.9s ease-in-out infinite 0.4s alternate;
+}
+
+@keyframes soundWave {
+  0% { height: 3px; }
+  100% { height: 13px; }
+}
+
+/* Mobile Hamburger Toggle (Right side) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 42px;
+  height: 42px;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-accent);
+  background-color: var(--color-surface);
+  color: var(--color-secondary);
+}
+
+.nav-toggle .hamburger-bar {
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  border-radius: 1px;
+  transition: all var(--transition-fast);
+}
+
+/* --------------------------------------------------------------------------
+   Mobile Menu Drawer (Solid Opaque, Fixed)
+   -------------------------------------------------------------------------- */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: none;
+}
+
+.mobile-menu.is-open {
+  display: block;
+}
+
+.mobile-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(30, 20, 14, 0.65);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.mobile-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 85%;
+  max-width: 340px;
+  height: 100vh;
+  height: 100dvh;
+  background-color: #FFFDF9;
+  border-left: 2px solid var(--color-primary);
+  border-top-left-radius: var(--radius-lg);
+  border-bottom-left-radius: var(--radius-lg);
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35);
+  animation: slideInRight 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+  z-index: 100000;
+}
+
+.mobile-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.mobile-brand-fancy {
+  font-family: var(--font-script);
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  line-height: 1;
+}
+
+.nav-close {
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--color-secondary);
+  padding: 0.2rem 0.5rem;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-top: 1.75rem;
+}
+
+.mobile-nav-link {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  display: block;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: color var(--transition-fast), padding-left var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  color: var(--color-primary);
+  padding-left: 0.5rem;
+}
+
+.mobile-menu-footer {
+  margin-top: auto;
+  text-align: center;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--color-accent);
+}
+
+.mobile-date {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* --------------------------------------------------------------------------
+   6. Hero Section (Distinct Background: Warm Alabaster)
+   -------------------------------------------------------------------------- */
+.hero-section {
+  padding: 3.5rem 0 4.5rem;
+  position: relative;
+  background: linear-gradient(180deg, #FDFBF7 0%, #F9F3EA 100%);
+}
+
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-header-ornament {
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+}
+
+.victorian-flourish-svg {
+  width: 240px;
+  height: 24px;
+}
+
+/* Victorian Frame for Portrait (Clean rounded border, NO brown corner brackets) */
+.hero-portrait-wrapper {
+  margin-bottom: 2.25rem;
+  width: 100%;
+  max-width: 420px;
+}
+
+.victorian-frame {
+  position: relative;
+  padding: 12px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 15px 40px var(--color-shadow);
+  border-radius: var(--radius-lg);
+}
+
+.victorian-frame::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(140, 106, 78, 0.35);
+  pointer-events: none;
+  border-radius: calc(var(--radius-lg) - 5px);
+}
+
+.hero-portrait-img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: calc(var(--radius-lg) - 8px);
+  border: 1px solid var(--color-border-subtle);
+}
+
+/* Hero Typography */
+.hero-content {
+  width: 100%;
+  max-width: 840px;
+}
+
+.hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  font-weight: 600;
+  color: var(--color-secondary);
+  line-height: 1.1;
+  margin-bottom: 0.85rem;
+}
+
+.hero-tagline {
+  font-size: 1.15rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  font-family: var(--font-serif);
+  max-width: 620px;
+  margin: 0 auto 1.5rem;
+  line-height: 1.6;
+}
+
+.hero-date-badge {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.65rem 2.4rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  box-shadow: 0 4px 15px var(--color-shadow);
+  border-radius: var(--radius-pill);
+  margin-bottom: 1.5rem;
+}
+
+.badge-day {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.badge-date {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+/* Event Cards Grid */
+.event-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  margin-top: 2rem;
+  text-align: left;
+}
+
+.event-card {
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-md);
+}
+
+.event-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px var(--color-shadow);
+}
+
+.event-icon {
+  color: var(--color-primary);
+  margin-bottom: 1rem;
+}
+
+.event-title {
+  font-family: var(--font-serif);
+  font-size: 1.65rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+  line-height: 1.25;
+}
+
+.event-venue {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  margin-bottom: 0.25rem;
+}
+
+.event-address {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+.event-time-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: var(--color-background);
+  border: 1px solid var(--color-accent);
+  padding: 0.35rem 0.95rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  margin-bottom: 1.25rem;
+  align-self: flex-start;
+}
+
+.time-label {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.time-value {
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+
+/* Victorian Google Maps Location Button Link */
+.event-location-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.35rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-pill);
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: auto;
+  box-shadow: 0 2px 8px var(--color-shadow);
+  transition: all var(--transition-smooth);
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.event-location-link:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #FFFFFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(74, 54, 40, 0.25);
+}
+
+.location-pin-icon {
+  color: currentColor;
+}
+
+/* --------------------------------------------------------------------------
+   7. Countdown Section (Distinct Background: Antique Parchment)
+   -------------------------------------------------------------------------- */
+.countdown-section {
+  padding: 4.5rem 0;
+  background: linear-gradient(180deg, #F3EAE0 0%, #EFE4D6 100%);
+  border-top: 1px solid var(--color-border-subtle);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.countdown-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.countdown-card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  padding: 1.75rem 1rem;
+  text-align: center;
+  box-shadow: 0 8px 24px var(--color-shadow);
+  position: relative;
+  transition: transform var(--transition-smooth);
+}
+
+.countdown-card::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(214, 196, 167, 0.4);
+  pointer-events: none;
+  border-radius: calc(var(--radius-md) - 5px);
+}
+
+.countdown-card:hover {
+  transform: translateY(-3px);
+}
+
+.countdown-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 700;
+  color: var(--color-secondary);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.countdown-label {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.countdown-expired {
+  text-align: center;
+  padding: 2rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  max-width: 600px;
+  margin: 1.5rem auto 0;
+}
+
+.expired-msg {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  color: var(--color-secondary);
+  font-weight: 600;
+}
+
+/* --------------------------------------------------------------------------
+   8. Send Your Wishes Form Section (Distinct Background: Ivory Blush)
+   -------------------------------------------------------------------------- */
+.send-wish-section {
+  padding: 4.5rem 0;
+  background: linear-gradient(180deg, #FAF4EB 0%, #F6ECE0 100%);
+}
+
+.form-card-box {
+  padding: 2.75rem 2.25rem;
+  border-radius: var(--radius-lg);
+}
+
+.form-card-box::before {
+  border-radius: calc(var(--radius-lg) - 6px);
+}
+
+.form-feedback {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 1.75rem;
+  font-size: 0.98rem;
+  text-align: center;
+  line-height: 1.5;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.form-feedback.success {
+  background-color: #EBF5EE;
+  color: #245A34;
+  border: 1px solid #B8DEC3;
+}
+
+.form-feedback.error {
+  background-color: #FDF2F2;
+  color: #8C2A2A;
+  border: 1px solid #F3C3C3;
+}
+
+.form-group {
+  margin-bottom: 1.75rem;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.form-label {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+}
+
+.form-label .required {
+  color: var(--color-primary);
+  font-weight: bold;
+}
+
+.char-count {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
+.victorian-input,
+.victorian-textarea {
+  width: 100%;
+  padding: 0.95rem 1.25rem;
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  color: var(--color-secondary);
+  font-size: 1rem;
+  line-height: 1.5;
+  box-shadow: inset 0 2px 4px rgba(74, 54, 40, 0.05);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.victorian-input:focus,
+.victorian-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(140, 106, 78, 0.2);
+}
+
+.victorian-textarea {
+  resize: vertical;
+  min-height: 130px;
+}
+
+.form-submit-row {
+  margin-top: 2rem;
+}
+
+.submit-spinner {
+  display: inline-flex;
+  margin-left: 0.5rem;
+}
+
+.spinner-svg {
+  width: 18px;
+  height: 18px;
+  animation: spin 0.8s linear infinite;
+  stroke: currentColor;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   9. Guest Wishes Section (Distinct Background: Antique Linen)
+   -------------------------------------------------------------------------- */
+.guest-wishes-section {
+  padding: 4.5rem 0;
+  background: linear-gradient(180deg, #EFE3D3 0%, #E8DC run-down 100%, #EDE1D1 100%);
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.wishes-panel-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.wishes-panel-border {
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--radius-lg);
+  padding: 1.35rem;
+  box-shadow: 0 12px 35px var(--color-shadow);
+  position: relative;
+}
+
+.wishes-panel-border::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(214, 196, 167, 0.4);
+  pointer-events: none;
+  border-radius: calc(var(--radius-lg) - 5px);
+}
+
+.wishes-panel {
+  max-height: 620px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.75rem 0.5rem;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) var(--color-background);
+  border-radius: var(--radius-md);
+}
+
+.wishes-panel::-webkit-scrollbar {
+  width: 8px;
+}
+
+.wishes-panel::-webkit-scrollbar-track {
+  background: var(--color-background);
+  border-radius: 4px;
+}
+
+.wishes-panel::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 4px;
+  border: 1px solid var(--color-accent);
+}
+
+.wishes-panel::-webkit-scrollbar-thumb:hover {
+  background: var(--color-primary-hover);
+}
+
+.wishes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.wish-card {
+  background-color: #FFFFFF;
+  border: 1px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  padding: 1.4rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 14px var(--color-shadow);
+  position: relative;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.wish-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(74, 54, 40, 0.16);
+}
+
+.wish-card-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px dashed var(--color-border-subtle);
+  padding-bottom: 0.65rem;
+}
+
+.wish-author {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  line-height: 1.2;
+  word-break: break-word;
+}
+
+.wish-date {
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  font-family: var(--font-sans);
+}
+
+.wish-body {
+  font-size: 0.96rem;
+  color: var(--color-secondary);
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  margin-top: 0.25rem;
+}
+
+.wishes-state-box {
+  padding: 4rem 1.5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.state-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--color-accent);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  margin: 0 auto 1.25rem;
+  animation: spin 0.9s linear infinite;
+}
+
+.state-text {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.empty-icon, .error-icon {
+  font-size: 2.5rem;
+  color: var(--color-primary);
+  margin-bottom: 0.75rem;
+}
+
+.empty-title, .error-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.empty-desc, .error-desc {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+  max-width: 450px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-sm {
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: var(--radius-pill);
+}
+
+.panel-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.85rem;
+  font-size: 0.82rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+.hint-arrow {
+  color: var(--color-primary);
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer Section (Distinct Background: Deep Victorian Espresso)
+   -------------------------------------------------------------------------- */
+.site-footer {
+  padding: 3.5rem 0 3rem;
+  background: linear-gradient(180deg, #38261A 0%, #24160E 100%);
+  color: var(--color-surface);
+  border-top: 2px solid var(--color-accent);
+}
+
+.footer-flourish {
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.footer-svg {
+  width: 140px;
+  height: 20px;
+  margin: 0 auto;
+}
+
+.footer-tagline {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--color-accent);
+  margin-bottom: 0.4rem;
+}
+
+.footer-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 0.35rem;
+}
+
+.footer-date {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--color-accent);
+}
+
+.footer-closing {
+  font-size: 0.95rem;
+  color: rgba(255, 250, 243, 0.7);
+  max-width: 500px;
+  margin: 0.5rem auto 0;
+}
+
+/* --------------------------------------------------------------------------
+   11. Bidirectional Scroll Animations (Trigger on Scroll Up & Down)
+   -------------------------------------------------------------------------- */
+.reveal-on-scroll {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-left {
+  transform: translateX(-70px);
+}
+
+.reveal-right {
+  transform: translateX(70px);
+}
+
+.reveal-up {
+  transform: translateY(50px);
+}
+
+.reveal-scale {
+  transform: scale(0.92);
+}
+
+.reveal-on-scroll.is-revealed {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+.delay-1 { transition-delay: 0.1s; }
+.delay-2 { transition-delay: 0.2s; }
+.delay-3 { transition-delay: 0.3s; }
+.delay-4 { transition-delay: 0.4s; }
+
+/* --------------------------------------------------------------------------
+   12. Responsive Media Queries (Mobile, Tablet, Desktop)
+   -------------------------------------------------------------------------- */
+
+/* Tablet (1024px and below) */
+@media (max-width: 1024px) {
+  .event-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .wishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile & Small Tablets (768px and below) */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 70px;
+  }
+
+  /* Switch desktop nav to flex bar: Sound on LEFT, Names in CENTER, Hamburger on RIGHT */
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .desktop-nav-group {
+    display: none;
+  }
+
+  .nav-left {
+    gap: 0;
+    flex: 0 0 auto;
+  }
+
+  .nav-brand-center {
+    flex: 1 1 auto;
+  }
+
+  .brand-names-fancy {
+    font-size: clamp(2rem, 6vw, 2.7rem);
+  }
+
+  .nav-right {
+    gap: 0;
+    flex: 0 0 auto;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .music-label {
+    display: none;
+  }
+
+  .music-toggle-btn {
+    padding: 0.45rem 0.65rem;
+  }
+
+  .hero-section {
+    padding: 2.25rem 0 3.25rem;
+  }
+
+  .hero-portrait-wrapper {
+    max-width: 320px;
+  }
+
+  .hero-title {
+    font-size: clamp(2.2rem, 8vw, 3.4rem);
+  }
+
+  .hero-tagline {
+    font-size: 1.05rem;
+  }
+
+  .countdown-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .countdown-card {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .form-card-box {
+    padding: 2rem 1.4rem;
+  }
+
+  .wishes-panel {
+    max-height: 60vh;
+  }
+
+  .wishes-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .intro-card {
+    padding: 1.75rem 1.5rem;
+    max-width: 340px;
+  }
+
+  .reveal-left {
+    transform: translateX(-35px);
+  }
+  .reveal-right {
+    transform: translateX(35px);
+  }
+  .reveal-up {
+    transform: translateY(30px);
+  }
+}
+
+/* Narrow Mobile Viewports (390px, 375px, 320px) */
+@media (max-width: 390px) {
+  html {
+    font-size: 15px;
+  }
+
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero-portrait-wrapper {
+    max-width: 270px;
+  }
+
+  .brand-names-fancy {
+    font-size: 1.95rem;
+  }
+
+  .countdown-grid {
+    gap: 0.75rem;
+  }
+
+  .countdown-card {
+    padding: 1rem 0.5rem;
+  }
+
+  .countdown-num {
+    font-size: 2rem;
+  }
+
+  .victorian-btn-lg {
+    padding: 0.85rem 1.8rem;
+    font-size: 1.1rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   13. Accessibility & Reduced Motion
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .intro-overlay {
+    transition: none !important;
+  }
+
+  .reveal-on-scroll {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .music-toggle-btn.is-playing .bar {
+    animation: none !important;
+    height: 10px !important;
+  }
+}

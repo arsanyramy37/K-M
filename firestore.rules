@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Dedicated collection for Kerollos & Mariam
+    match /kerollos_mariam_wishes/{wishId} {
+      // Public can read all published wishes
+      allow read: if true;
+
+      // Public can submit a wish only if strictly validated
+      allow create: if request.resource.data.keys().hasAll(['name', 'message', 'createdAt'])
+                    && request.resource.data.name is string
+                    && request.resource.data.name.size() > 0
+                    && request.resource.data.name.size() <= 80
+                    && request.resource.data.message is string
+                    && request.resource.data.message.size() > 0
+                    && request.resource.data.message.size() <= 1000;
+
+      // Prevent unauthorized updates or deletion of wishes
+      allow update, delete: if false;
+    }
+
+    // Default deny for all other paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
