@@ -48,21 +48,21 @@ export const EVENT_DETAILS = {
     groom: "Kerollos",
     bride: "Mariam"
   },
-  dateText: "Wednesday, October 28, 2026",
-  targetDateIso: "2026-10-28T17:00:00+03:00", // 5:00 PM Cairo Time
+  dateText: "Thursday, October 29, 2026",
+  targetDateIso: "2026-10-29T17:00:00+03:00", // 5:00 PM Cairo Time (Thursday, Oct 29, 2026)
   ceremony: {
     title: "Holy Matrimony Ceremony",
-    venue: "Saint Mary & Saint George Coptic Orthodox Church",
-    address: "Heliopolis, Cairo, Egypt",
+    venue: "St. Mary & Archangel Michael Coptic Orthodox Cathedral",
+    address: "El-Seka El-Gedida, Mansoura, Egypt",
     time: "5:00 PM",
-    mapsUrl: "https://maps.google.com/?q=Saint+Mary+and+Saint+George+Coptic+Orthodox+Church+Heliopolis"
+    mapsUrl: "https://www.google.com/maps/search/?api=1&query=29WM%2BG7M%2C+Mansoura"
   },
   reception: {
     title: "Wedding Dinner & Reception",
-    venue: "The Grand Victorian Ballroom",
-    address: "Cairo, Egypt",
+    venue: "Flora",
+    address: "Mansoura, Egypt",
     time: "7:30 PM",
-    mapsUrl: "https://maps.google.com/?q=The+Grand+Ballroom+Cairo"
+    mapsUrl: "https://maps.app.goo.gl/xjRopmPXtgAwiEHGA?g_st=ic"
   }
 };
 
