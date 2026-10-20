@@ -51,14 +51,14 @@ export const EVENT_DETAILS = {
   dateText: "Thursday, October 29, 2026",
   targetDateIso: "2026-10-29T17:00:00+03:00", // 5:00 PM Cairo Time (Thursday, Oct 29, 2026)
   ceremony: {
-    title: "Holy Matrimony Ceremony",
+    title: "Engagement Blessing Ceremony",
     venue: "St. Mary & Archangel Michael Coptic Orthodox Cathedral",
     address: "El-Seka El-Gedida, Mansoura, Egypt",
-    time: "5:00 PM",
+    time: "6:00 PM",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=29WM%2BG7M%2C+Mansoura"
   },
   reception: {
-    title: "Wedding Dinner & Reception",
+    title: "Engagement Celebration & Reception",
     venue: "Flora Garden",
     address: "Mansoura, Egypt",
     time: "7:30 PM",
@@ -328,43 +328,67 @@ function setupIntroOverlay() {
 
   if (!overlay || !joinBtn) return;
 
+  // Force video autoplay — some browsers block the HTML attribute, JS play() works after DOMContentLoaded
   if (introVideo) {
+    introVideo.muted = true;
+    introVideo.loop = true;
+    introVideo.playsInline = true;
+
+    const playVideo = () => {
+      const p = introVideo.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          // Silently ignore if browser blocks autoplay (video is decorative)
+        });
+      }
+    };
+
+    if (introVideo.readyState >= 2) {
+      playVideo();
+    } else {
+      introVideo.addEventListener("canplay", playVideo, { once: true });
+      introVideo.addEventListener("loadeddata", playVideo, { once: true });
+    }
+
     introVideo.addEventListener("error", (e) => {
       console.warn("Intro video could not be loaded, continuing gracefully:", e);
     });
   }
 
   const handleEnterWebsite = () => {
-    if (introVideo && !introVideo.paused) {
-      try {
-        introVideo.pause();
-      } catch (e) {
-        // ignore
-      }
+    // Pause the video
+    if (introVideo) {
+      try { introVideo.pause(); } catch (e) { /* ignore */ }
     }
 
+    // Start fade-out + unlock scroll
     overlay.classList.add("fade-out");
     document.body.classList.remove("no-scroll");
+
+    // Scroll to very top so the page starts from Hero section
+    window.scrollTo({ top: 0, behavior: "instant" });
+
+    // Start music
     audioController.startAfterGesture();
 
-    // Immediately reveal hero elements already in viewport upon entry
+    // Reveal ALL elements currently in the viewport right away
+    // (hero portrait, title, verse, etc.) — prevents the "frozen" appearance
     setTimeout(() => {
-      const initialElements = document.querySelectorAll(".hero-section .reveal-on-scroll");
-      initialElements.forEach((el) => {
+      const allReveal = document.querySelectorAll(".reveal-on-scroll");
+      allReveal.forEach((el) => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight && rect.bottom > 0) {
           el.classList.add("is-revealed");
         }
       });
-    }, 100);
+    }, 80);
 
+    // Remove overlay from DOM flow after transition finishes
     setTimeout(() => {
       overlay.classList.add("hidden");
       overlay.setAttribute("aria-hidden", "true");
-      if (mainContent) {
-        mainContent.focus();
-      }
-    }, 700);
+      if (mainContent) mainContent.focus({ preventScroll: true });
+    }, 750);
   };
 
   joinBtn.addEventListener("click", handleEnterWebsite);
@@ -687,6 +711,7 @@ function setupScrollReveal() {
   const revealElements = document.querySelectorAll(".reveal-on-scroll");
   if (!revealElements.length) return;
 
+  // If IntersectionObserver not supported, reveal everything immediately
   if (!("IntersectionObserver" in window)) {
     revealElements.forEach((el) => el.classList.add("is-revealed"));
     return;
@@ -697,25 +722,25 @@ function setupScrollReveal() {
   const observer = new IntersectionObserver(
     (entries) => {
       const currentScrollY = window.pageYOffset;
-      const scrollingDown = currentScrollY > lastScrollY;
       lastScrollY = currentScrollY;
 
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("is-revealed");
         } else {
-          // If the element exits the screen (scrolling up or down past it),
-          // reset it so it re-animates smoothly when re-entering viewport
+          // Re-hide only elements that have fully exited the viewport
+          // so they can re-animate when scrolled back into view
           const rect = entry.boundingClientRect;
-          if (rect.top > (window.innerHeight || document.documentElement.clientHeight) || rect.bottom < 0) {
+          const vh = window.innerHeight || document.documentElement.clientHeight;
+          if (rect.bottom < 0 || rect.top > vh) {
             entry.target.classList.remove("is-revealed");
           }
         }
       });
     },
     {
-      threshold: 0.05,
-      rootMargin: "0px 0px 0px 0px"
+      threshold: 0.08,
+      rootMargin: "0px 0px -20px 0px"
     }
   );
 

@@ -62,7 +62,6 @@ html {
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
   width: 100%;
-  max-width: 100vw;
 }
 
 body {
@@ -72,9 +71,7 @@ body {
   color: var(--color-secondary);
   background-color: var(--color-background);
   min-height: 100vh;
-  overflow-x: hidden;
   width: 100%;
-  max-width: 100vw;
   position: relative;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -83,14 +80,21 @@ body {
 /* Strict clipping on major structural landmarks to prevent horizontal drift */
 .site-header,
 .main-content,
-.hero-section,
 .countdown-section,
 .send-wish-section,
 .guest-wishes-section,
 .site-footer {
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   overflow-x: clip;
+  box-sizing: border-box;
+}
+
+/* Hero handled with overflow:hidden to keep reveal animations safe */
+.hero-section {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   box-sizing: border-box;
 }
 
@@ -1538,7 +1542,7 @@ section[id] {
     padding-left: 1.15rem;
     padding-right: 1.15rem;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     box-sizing: border-box;
   }
 
@@ -1549,7 +1553,7 @@ section[id] {
     align-items: center;
     padding: 0 0.85rem;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     box-sizing: border-box;
     overflow: hidden;
   }
@@ -1600,7 +1604,7 @@ section[id] {
   .hero-section {
     padding: 2.25rem 0 3.25rem;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     overflow-x: clip;
     box-sizing: border-box;
   }
@@ -1663,7 +1667,7 @@ section[id] {
 
   .countdown-section {
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     overflow-x: clip;
     box-sizing: border-box;
   }
@@ -1690,7 +1694,7 @@ section[id] {
 
   .send-wish-section {
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     overflow-x: clip;
     box-sizing: border-box;
   }
@@ -1706,7 +1710,7 @@ section[id] {
   .guest-wishes-section {
     padding: 3rem 0 3.75rem;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
     overflow-x: clip;
     box-sizing: border-box;
   }
