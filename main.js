@@ -347,6 +347,17 @@ function setupIntroOverlay() {
     document.body.classList.remove("no-scroll");
     audioController.startAfterGesture();
 
+    // Immediately reveal hero elements already in viewport upon entry
+    setTimeout(() => {
+      const initialElements = document.querySelectorAll(".hero-section .reveal-on-scroll");
+      initialElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          el.classList.add("is-revealed");
+        }
+      });
+    }, 100);
+
     setTimeout(() => {
       overlay.classList.add("hidden");
       overlay.setAttribute("aria-hidden", "true");
@@ -703,8 +714,8 @@ function setupScrollReveal() {
       });
     },
     {
-      threshold: 0.12,
-      rootMargin: "0px 0px -40px 0px"
+      threshold: 0.05,
+      rootMargin: "0px 0px 0px 0px"
     }
   );
 
