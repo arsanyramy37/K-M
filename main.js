@@ -59,7 +59,7 @@ export const EVENT_DETAILS = {
   },
   reception: {
     title: "Wedding Dinner & Reception",
-    venue: "Flora",
+    venue: "Flora Garden",
     address: "Mansoura, Egypt",
     time: "7:30 PM",
     mapsUrl: "https://maps.app.goo.gl/xjRopmPXtgAwiEHGA?g_st=ic"

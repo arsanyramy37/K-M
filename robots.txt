@@ -1,0 +1,3 @@
+# robots.txt for Kerollos & Mariam Wedding
+User-agent: *
+Allow: /
