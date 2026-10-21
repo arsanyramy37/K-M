@@ -1,3 +1,3 @@
-# robots.txt for Kerollos & Mariam Wedding
+# robots.txt for Kerollos & Mariam Engagement Website
 User-agent: *
 Allow: /

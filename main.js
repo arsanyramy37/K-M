@@ -1,5 +1,5 @@
 /**
- * Kerollos & Mariam — Wedding Website
+ * Kerollos & Mariam — Engagement Website
  * All-In-One Consolidated Application Module
  *
  * Includes:
