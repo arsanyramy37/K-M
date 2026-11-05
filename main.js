@@ -623,6 +623,8 @@ function setupWishForm() {
 
   if (!form || !nameInput || !messageInput) return;
 
+  let lastSubmissionTime = 0;
+
   nameInput.addEventListener('input', () => {
     nameCount.textContent = `${nameInput.value.length} / ${FORM_LIMITS.nameMaxLength}`;
   });
@@ -645,6 +647,15 @@ function setupWishForm() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     clearFeedback();
+
+    const now = Date.now();
+    if (now - lastSubmissionTime < 8000) {
+      showFeedback(
+        'error',
+        'Please wait a few seconds before sending another message.',
+      );
+      return;
+    }
 
     const name = nameInput.value.trim();
     const message = messageInput.value.trim();
@@ -689,6 +700,7 @@ function setupWishForm() {
 
     try {
       await submitWish({ name, message });
+      lastSubmissionTime = Date.now();
       showFeedback(
         'success',
         'Your wish has been sent successfully! Thank you for blessing Kerollos & Mariam.',
